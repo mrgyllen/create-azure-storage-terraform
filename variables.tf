@@ -1,11 +1,3 @@
-resource "random_string" "resource_code" {
-  length = 8
-  upper = false
-  numeric = true
-  lower = true
-  special = false
-}
-
 variable "resource_group_name" {
   description   = "(Required) Specifies the Resource Group where the Azure Storage Account should exist."
   default       = "terraform-state-rg"
@@ -14,7 +6,7 @@ variable "resource_group_name" {
 
 variable "storage_account_name" {
   description   = "(Required) Specifies the Azure Storage Acccount name."
-  default       = "terraformstate${random_string.resource_code.result}"
+  default       = "terraformstate"
   type          = string
 }
 
