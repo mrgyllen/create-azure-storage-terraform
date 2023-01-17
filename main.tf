@@ -32,7 +32,7 @@ resource "azurerm_storage_account" "state-sta" {
   }
 }
 
-resource "azurerm_storage_container" "tfstate" {
+resource "azurerm_storage_container" "core-container" {
   depends_on = [azurerm_storage_account.state-sta]
   
   name                  = var.storage_container_name
