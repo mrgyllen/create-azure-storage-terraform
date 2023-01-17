@@ -11,10 +11,18 @@ resource "azurerm_resource_group" "state-rg" {
   }
 }
 
+resource "random_string" "output" {
+  length = 8
+  upper = false
+  numeric = true
+  lower = true
+  special = false
+}
+
 resource "azurerm_storage_account" "state-sta" {
   depends_on = [azurerm_resource_group.state-rg]
   
-  name                              = var.storage_account_name
+  name                              = "terraformstate${random_string.output.result}"
   resource_group_name               = azurerm_resource_group.state-rg.name
   location                          = azurerm_resource_group.state-rg.location
   account_kind                      = "StorageV2"
