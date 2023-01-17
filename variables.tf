@@ -4,12 +4,6 @@ variable "resource_group_name" {
   type          = string
 }
 
-variable "storage_account_name" {
-  description   = "(Required) Specifies the Azure Storage Acccount name."
-  default       = "terraformstate"
-  type          = string
-}
-
 variable "storage_container_name" {
   description   = "(Required) Specifies the storage container name to be used for terraform state."
   default       = "tfstate"
