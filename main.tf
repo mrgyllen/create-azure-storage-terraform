@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "tfstate" {
-  name     = = var.resource_group_name == "" ? module.resource_group_label.id : var.resource_group_name
+  name     = var.resource_group_name == "" ? module.resource_group_label.id : var.resource_group_name
   location = var.location
 }
 
