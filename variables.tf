@@ -1,3 +1,9 @@
+variable "default_tags" {
+  description = "Default billing tags to be applied across all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "storage_account_tier" {
   type        = string
   default     = "Standard"
@@ -29,7 +35,7 @@ variable "key_vault_key_expiration_date" {
 
 variable "namespace" {
   description = "Namespace, which could be your organization name. First item in naming sequence."
-  default     = "gyllencreutz"
+  default     = "gyllen"
   type        = string
 }
 

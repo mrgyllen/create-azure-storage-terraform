@@ -11,7 +11,6 @@ module "resource_group_label" {
   name         = var.name
   attributes   = var.attributes
   delimiter    = "-"
-  convert_case = true
   tags         = var.default_tags
   enabled      = var.resource_group_name == "" ? true : false
 }
@@ -27,7 +26,6 @@ module "storage_account_label" {
   name         = var.name
   attributes   = var.attributes
   delimiter    = ""
-  convert_case = true
   tags         = var.default_tags
   enabled      = var.storage_account_name == "" ? true : false
 }
@@ -43,7 +41,6 @@ module "storage_container_label" {
   name         = var.name
   attributes   = var.attributes
   delimiter    = "-"
-  convert_case = true
   tags         = var.default_tags
   enabled      = var.storage_account_name == "" ? true : false
 }
@@ -59,7 +56,6 @@ module "key_vault_label" {
   name         = var.name
   attributes   = var.attributes
   delimiter    = "-"
-  convert_case = true
   tags         = var.default_tags
   enabled      = var.storage_account_name == "" ? true : false
 }
