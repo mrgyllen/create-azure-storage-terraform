@@ -33,31 +33,35 @@ variable "key_vault_key_expiration_date" {
   description = "Expiration of the Key Vault Key, in UTC datetime (Y-m-d'T'H:M:S'Z')."
 }
 
-variable "namespace" {
+# ---------------------------------------------------------------------------------------------------------------------
+# rg_label_ - resource group label variables - used in terraform-null-label
+# ---------------------------------------------------------------------------------------------------------------------
+
+variable "rg_label_namespace" {
   description = "Namespace, which could be your organization name. First item in naming sequence."
   default     = ""
   type        = string
 }
 
-variable "stage" {
+variable "rg_label_stage" {
   description = "Stage, e.g. `prod`, `staging`, `dev`, or `test`. Second item in naming sequence."
   default     = ""
   type        = string
 }
 
-variable "name" {
+variable "rg_label_name" {
   description = "Name, which could be the name of your solution or app. Third item in naming sequence."
   default     = ""
   type        = string
 }
 
-variable "attributes" {
+variable "rg_label_attributes" {
   type        = list(string)
   default     = []
   description = "Additional attributes, e.g. `1`"
 }
 
-variable "delimiter" {
+variable "rg_label_delimiter" {
   type        = string
   default     = "-"
   description = "Delimiter to be used between (1) `namespace`, (2) `name`, (3) `stage` and (4) `attributes`"
