@@ -6,11 +6,11 @@
 # Can't end with period.
 module "resource_group_label" {
   source       = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
-  namespace    = var.namespace
-  stage        = var.stage
-  name         = var.name
-  attributes   = var.attributes
-  delimiter    = "-"
+  namespace    = var.rg_label_namespace
+  stage        = var.rg_label_stage
+  name         = var.rg_label_name
+  attributes   = var.rg_label_attributes
+  delimiter    = var.rg_label_delimiter
   tags         = var.default_tags
   enabled      = var.resource_group_name == "" ? true : false
 }
