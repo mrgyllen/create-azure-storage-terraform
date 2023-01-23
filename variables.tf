@@ -80,13 +80,13 @@ variable "storage_account_name" {
 }
 
 variable "environment" {
-  type        = string
+  type = string
   description = "This variable defines the environment tag"
-  default     = "staging"
+  default = "staging"
 }
 
 variable "location" {
-  type        = string
+  type = string
   description = "(Required) Azure region where resources will be created"
-  default     = "North Europe"
+  default = "North Europe"
 }

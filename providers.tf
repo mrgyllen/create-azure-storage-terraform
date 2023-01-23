@@ -1,7 +1,7 @@
 # Define Terraform provider
 terraform {
   required_version = ">= 1.3"
-
+  
   required_providers {
     azurerm = {
       version = "~>3.30"
@@ -10,6 +10,6 @@ terraform {
   }
 }
 # Configure the Azure provider
-provider "azurerm" {
-  features {}
+provider "azurerm" { 
+  features {}  
 }
