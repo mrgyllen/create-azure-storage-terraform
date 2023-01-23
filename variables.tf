@@ -35,25 +35,25 @@ variable "key_vault_key_expiration_date" {
 
 variable "namespace" {
   description = "Namespace, which could be your organization name. First item in naming sequence."
-  default     = "gyllen"
+  default     = ""
   type        = string
 }
 
 variable "stage" {
   description = "Stage, e.g. `prod`, `staging`, `dev`, or `test`. Second item in naming sequence."
-  default     = "dev"
+  default     = ""
   type        = string
 }
 
 variable "name" {
   description = "Name, which could be the name of your solution or app. Third item in naming sequence."
-  default     = "tfstate"
+  default     = ""
   type        = string
 }
 
 variable "attributes" {
   type        = list(string)
-  default     = ["tmp"]
+  default     = []
   description = "Additional attributes, e.g. `1`"
 }
 
