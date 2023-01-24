@@ -21,11 +21,11 @@ module "resource_group_label" {
 # Valid Characters: Lowercase letters and numbers only
 module "storage_account_label" {
   source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = var.attributes
-  delimiter  = ""
+  namespace  = var.rg_label_namespace
+  stage      = var.rg_label_stage
+  name       = var.rg_label_name
+  attributes = var.rg_label_attributes
+  delimiter  = var.rg_label_delimiter
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
@@ -36,11 +36,11 @@ module "storage_account_label" {
 # Valid Characters: Lowercase letters, numbers, and hyphens. Start with lowercase letter or number. Can't use consecutive hyphens.
 module "storage_container_label" {
   source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = var.attributes
-  delimiter  = "-"
+  namespace  = var.rg_label_namespace
+  stage      = var.rg_label_stage
+  name       = var.rg_label_name
+  attributes = var.rg_label_attributes
+  delimiter  = var.rg_label_delimiter
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
@@ -51,11 +51,11 @@ module "storage_container_label" {
 # Valid charachters: Alphanumerics and hyphens. Start with letter. End with letter or digit. Can't contain consecutive hyphens.
 module "key_vault_label" {
   source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=0.25.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = var.attributes
-  delimiter  = "-"
+  namespace  = var.rg_label_namespace
+  stage      = var.rg_label_stage
+  name       = var.rg_label_name
+  attributes = var.rg_label_attributes
+  delimiter  = var.rg_label_delimiter
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
