@@ -10,7 +10,7 @@ module "resource_group_label" {
   stage      = var.rg_label_stage
   name       = var.rg_label_name
   attributes = var.rg_label_attributes
-  delimiter  = var.rg_label_delimiter
+  delimiter  = "-"
   tags       = var.default_tags
   enabled    = var.resource_group_name == "" ? true : false
 }
@@ -25,7 +25,7 @@ module "storage_account_label" {
   stage      = var.rg_label_stage
   name       = var.rg_label_name
   attributes = var.rg_label_attributes
-  delimiter  = var.rg_label_delimiter
+  delimiter  = ""
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
@@ -40,7 +40,7 @@ module "storage_container_label" {
   stage      = var.rg_label_stage
   name       = var.rg_label_name
   attributes = var.rg_label_attributes
-  delimiter  = var.rg_label_delimiter
+  delimiter  = "-"
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
@@ -55,7 +55,7 @@ module "key_vault_label" {
   stage      = var.rg_label_stage
   name       = var.rg_label_name
   attributes = var.rg_label_attributes
-  delimiter  = var.rg_label_delimiter
+  delimiter  = "-"
   tags       = var.default_tags
   enabled    = var.storage_account_name == "" ? true : false
 }
