@@ -7,6 +7,15 @@ resource "azurerm_resource_group" "tfstate" {
 # Azure Storage
 # ---------------------------------------------------------------------------------------------------------------------
 
+# Check: CKV2_AZURE_21: "Ensure Storage logging is enabled for Blob service for read requests"
+resource "azurerm_log_analytics_workspace" "tfstate" {
+  name                = "tfstateworkspace"
+  location            = azurerm_resource_group.tfstate.location
+  resource_group_name = azurerm_resource_group.tfstate.name
+  sku                 = "Free"
+  retention_in_days   = 30
+}
+
 resource "azurerm_storage_account" "tfstate" {
 
   name                     = var.storage_account_name == "" ? module.storage_account_label.id : var.storage_account_name
@@ -23,13 +32,37 @@ resource "azurerm_storage_account" "tfstate" {
   }
 
   # Security
+  # Check: CKV_AZURE_59: "Ensure that Storage accounts disallow public access"
+  public_network_access_enabled   = false
   enable_https_traffic_only       = true
   min_tls_version                 = "TLS1_2"
   allow_nested_items_to_be_public = false
 
+  # Check: CKV_AZURE_33 "Ensure Storage logging is enabled for Queue service for read, write and delete requests"
+  queue_properties {
+    logging {
+      delete                = true
+      read                  = true
+      version               = "2.0"
+      write                 = true
+      retention_policy_days = "10"
+    }
+  }
+
   tags = {
     environment = var.environment
   }
+}
+
+# Check: CKV2_AZURE_21: "Ensure Storage logging is enabled for Blob service for read requests"
+resource "azurerm_log_analytics_storage_insights" "tfstate" {
+  name                = "example-storageinsightconfig"
+  resource_group_name = azurerm_resource_group.tfstate.name
+  workspace_id        = azurerm_log_analytics_workspace.tfstate.id
+
+  storage_account_id   = azurerm_storage_account.tfstate.id
+  storage_account_key  = azurerm_storage_account.tfstate.primary_access_key
+  blob_container_names = [azurerm_storage_container.tfstate.name]
 }
 
 resource "azurerm_storage_container" "tfstate" {
@@ -44,13 +77,15 @@ resource "azurerm_storage_container" "tfstate" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "azurerm_key_vault" "tfstate" {
-  name                       = module.key_vault_label.id
-  location                   = azurerm_resource_group.tfstate.location
-  resource_group_name        = azurerm_resource_group.tfstate.name
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
-  sku_name                   = var.key_vault_sku_name
-  soft_delete_retention_days = 7
-  purge_protection_enabled   = true
+  name                = module.key_vault_label.id
+  location            = azurerm_resource_group.tfstate.location
+  resource_group_name = azurerm_resource_group.tfstate.name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  sku_name            = var.key_vault_sku_name
+  # Check: CKV_AZURE_189: "Ensure that Azure Key Vault disables public network access"
+  public_network_access_enabled = false
+  soft_delete_retention_days    = 7
+  purge_protection_enabled      = true
 
   network_acls {
     # Allows all azure services to access your keyvault. Can be set to 'None'

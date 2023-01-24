@@ -17,7 +17,7 @@ variable "storage_account_replication_type" {
 
 variable "key_vault_key_type" {
   type        = string
-  default     = "RSA"
+  default     = "RSA-HSM"
   description = "Specifies the Key Type to use for this Key Vault Key. For Terraform state, supply RSA or RSA-HSM."
 }
 
