@@ -27,12 +27,6 @@ variable "key_vault_sku_name" {
   description = "The Name of the SKU used for this Key Vault. Possible values are standard and premium."
 }
 
-variable "key_vault_key_expiration_date" {
-  type        = string
-  default     = "2023-12-31T23:59:00Z"
-  description = "Expiration of the Key Vault Key, in UTC datetime (Y-m-d'T'H:M:S'Z')."
-}
-
 # ---------------------------------------------------------------------------------------------------------------------
 # rg_label_ - resource group label variables - used in terraform-null-label
 # ---------------------------------------------------------------------------------------------------------------------
@@ -59,12 +53,6 @@ variable "rg_label_attributes" {
   type        = list(string)
   default     = []
   description = "Additional attributes, e.g. `1`"
-}
-
-variable "rg_label_delimiter" {
-  type        = string
-  default     = "-"
-  description = "Delimiter to be used between (1) `namespace`, (2) `name`, (3) `stage` and (4) `attributes`"
 }
 
 variable "resource_group_name" {

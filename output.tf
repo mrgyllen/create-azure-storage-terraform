@@ -60,22 +60,26 @@ output "storage_container_resource_manager_id" {
   description = "The Resource Manager ID of this Storage Container."
 }
 
+output "my_public_ip" {
+  value = [chomp(data.http.myip.response_body)]
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Key Vault Attributes
 # ---------------------------------------------------------------------------------------------------------------------
 ### The Key Vault ###
-output "key_vault_id" {
-  value       = azurerm_key_vault.tfstate.id
-  description = ""
-}
+#output "key_vault_id" {
+#  value       = azurerm_key_vault.tfstate.id
+#  description = ""
+#}
 
 ### the Key Vault Key ###
-output "key_vault_key_id" {
-  value       = azurerm_key_vault_key.tfstate.id
-  description = "The Key Vault Key ID"
-}
+#output "key_vault_key_id" {
+#  value       = azurerm_key_vault_key.tfstate.id
+#  description = "The Key Vault Key ID"
+#}
 
-output "key_vault_key_version" {
-  value       = azurerm_key_vault_key.tfstate.version
-  description = "The current version of the Key Vault Key."
-}
+#output "key_vault_key_version" {
+#  value       = azurerm_key_vault_key.tfstate.version
+#  description = "The current version of the Key Vault Key."
+#}
