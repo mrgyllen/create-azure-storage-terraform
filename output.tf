@@ -64,6 +64,11 @@ output "my_public_ip" {
   value = [chomp(data.http.myip.response_body)]
 }
 
+output "key_vault_sku_name" {
+  value       = azurerm_key_vault.tfstate.sku_name
+  description = "Selected SKU on KeyVault."
+}
+
 # ---------------------------------------------------------------------------------------------------------------------
 # Key Vault Attributes
 # ---------------------------------------------------------------------------------------------------------------------

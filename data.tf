@@ -4,5 +4,5 @@ data "azurerm_client_config" "current" {}
 
 # Get our public IP address
 data "http" "myip" {
-   url = "https://icanhazip.com/"
+  url = "https://icanhazip.com/"
 }

@@ -11,13 +11,13 @@ variable "storage_account_tier" {
 }
 variable "storage_account_replication_type" {
   type        = string
-  default     = "GRS"
+  default     = "LRS"
   description = "Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS."
 }
 
 variable "key_vault_key_type" {
   type        = string
-  default     = "RSA-HSM"
+  default     = "RSA"
   description = "Specifies the Key Type to use for this Key Vault Key. For Terraform state, supply RSA or RSA-HSM."
 }
 
@@ -25,6 +25,34 @@ variable "key_vault_sku_name" {
   type        = string
   default     = "standard"
   description = "The Name of the SKU used for this Key Vault. Possible values are standard and premium."
+}
+
+variable "kv-key-permissions-full" {
+  type        = list(string)
+  description = "List of full key permissions, must be one or more from the following: Backup, Create, Decrypt, Delete, Encrypt, Get, Import, List, Purge, Recover, Restore, Sign, UnwrapKey, Update, Verify, WrapKey, Release, Rotate, GetRotationPolicy, and SetRotationPolicy."
+  default     = ["Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+# kv- - KeyVault permissions
+# ---------------------------------------------------------------------------------------------------------------------
+
+variable "kv-secret-permissions-full" {
+  type        = list(string)
+  description = "List of full secret permissions, must be one or more from the following: Backup, Delete, Get, List, Purge, Recover, Restore and Set."
+  default     = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
+}
+
+variable "kv-certificate-permissions-full" {
+  type        = list(string)
+  description = "List of full certificate permissions, must be one or more from the following: Backup, Create, Delete, DeleteIssuers, Get, GetIssuers, Import, List, ListIssuers, ManageContacts, ManageIssuers, Purge, Recover, Restore, SetIssuers and Update"
+  default     = ["Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"]
+}
+
+variable "kv-storage-permissions-full" {
+  type        = list(string)
+  description = "List of full storage permissions, must be one or more from the following: Backup, Delete, DeleteSAS, Get, GetSAS, List, ListSAS, Purge, Recover, RegenerateKey, Restore, Set, SetSAS and Update."
+  default     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
