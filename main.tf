@@ -45,6 +45,12 @@ resource "azurerm_storage_account" "tfstate" {
   }
 }
 
+locals{
+  terraform_ip_range =[for i in data.tfe_ip_ranges.addresses.notifications : replace(i, "/32", "")]
+  client_ip = chomp(data.http.myip.response_body)
+  ip_rules = concat(local.terraform_ip_range, [local.client_ip])
+} 
+
 resource "azurerm_storage_container" "tfstate" {
 
   name                  = module.storage_container_label.id
@@ -57,7 +63,9 @@ resource "azurerm_storage_account_network_rules" "tfstate" {
   storage_account_id = azurerm_storage_account.tfstate.id
 
   default_action = "Deny"
-  ip_rules       = [chomp(data.http.myip.response_body)] # need to set this to use terraform in our machine
+  #ip_rules       = [chomp(data.http.myip.response_body), data.tfe_ip_ranges.addresses.notifications] # need to set this to use terraform in our machine
+  #ip_rules       = [for i in data.tfe_ip_ranges.addresses.notifications : i] # need to set this to use terraform in our machine
+  ip_rules       = [for i in local.ip_rules : i] 
   bypass         = ["Logging", "Metrics", "AzureServices"]
 
   # NOTE The order here matters: We cannot create storage

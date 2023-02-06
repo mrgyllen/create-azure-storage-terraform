@@ -60,14 +60,24 @@ output "storage_container_resource_manager_id" {
   description = "The Resource Manager ID of this Storage Container."
 }
 
+# ---------------------------------------------------------------------------------------------------------------------
+# Misc outputs
+# ---------------------------------------------------------------------------------------------------------------------
+
 output "my_public_ip" {
   value = [chomp(data.http.myip.response_body)]
+  description = "My(client) public ip adress."
 }
 
 output "key_vault_sku_name" {
   value       = azurerm_key_vault.tfstate.sku_name
   description = "Selected SKU on KeyVault."
 }
+
+output "terraform_ip_notifications_ranges"{
+  value = data.tfe_ip_ranges.addresses.notifications
+  description = "Terraform Cloud notifications ip ranges."
+} 
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Key Vault Attributes
