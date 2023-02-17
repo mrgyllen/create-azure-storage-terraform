@@ -2,6 +2,7 @@
 
 ![Azure Storage Account](https://img.shields.io/badge/azure%20Storage%20Account-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Terraform Cloud](https://img.shields.io/badge/terraform%20cloud-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 
 This is my first attempt at creating a storage account with terraform hcl to be used as a backend state file storage. I have tried to use common/good/best practices and also verified with different lint tools to find bad practices and/or security problems.
 
