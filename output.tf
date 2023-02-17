@@ -65,7 +65,7 @@ output "storage_container_resource_manager_id" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 output "my_public_ip" {
-  value = [chomp(data.http.myip.response_body)]
+  value       = [chomp(data.http.myip.response_body)]
   description = "My(client) public ip adress."
 }
 
@@ -74,27 +74,7 @@ output "key_vault_sku_name" {
   description = "Selected SKU on KeyVault."
 }
 
-output "terraform_ip_notifications_ranges"{
-  value = data.tfe_ip_ranges.addresses.notifications
+output "terraform_ip_notifications_ranges" {
+  value       = data.tfe_ip_ranges.addresses.notifications
   description = "Terraform Cloud notifications ip ranges."
-} 
-
-# ---------------------------------------------------------------------------------------------------------------------
-# Key Vault Attributes
-# ---------------------------------------------------------------------------------------------------------------------
-### The Key Vault ###
-#output "key_vault_id" {
-#  value       = azurerm_key_vault.tfstate.id
-#  description = ""
-#}
-
-### the Key Vault Key ###
-#output "key_vault_key_id" {
-#  value       = azurerm_key_vault_key.tfstate.id
-#  description = "The Key Vault Key ID"
-#}
-
-#output "key_vault_key_version" {
-#  value       = azurerm_key_vault_key.tfstate.version
-#  description = "The current version of the Key Vault Key."
-#}
+}

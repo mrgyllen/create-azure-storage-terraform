@@ -4,13 +4,22 @@ terraform {
 
   required_providers {
     azurerm = {
-      version = "3.42.0"
       source  = "hashicorp/azurerm"
+      version = "~> 3.42.0"
     }
 
     http = {
       source  = "hashicorp/http"
       version = "~> 3.2.1"
+    }
+
+    tfe = {
+      version = "~> 0.42.0"
+    }
+
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
     }
   }
 }
